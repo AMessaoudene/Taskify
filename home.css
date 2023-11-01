@@ -1,0 +1,22 @@
+a {
+    text-decoration:none !important;
+}
+.Profile-Picture{
+    border-radius:100px;
+    height:30px;
+    width:30px;
+}
+.social-media{
+    color:black;
+}
+.flex-navbar {
+    display: flex;
+}
+.flex-navbar-item {
+    flex: 1;
+}
+.flex-navbar-item-middle-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
