@@ -20,3 +20,6 @@ a {
     justify-content: space-around;
     align-items: center;
 }
+.nav-item.dropdown .dropdown-toggle::after {
+    display: none;
+}
