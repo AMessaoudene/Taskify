@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskStatusSelect = document.createElement("select");
     taskStatusSelect.classList.add("form-select", "task-status");
     taskStatusSelect.innerHTML = `
-        <option value="done" style="color: green;">Done</option>
-        <option value="in-progress" style="color: yellow;">In Progress</option>
-        <option value="not-yet" style="color: red;">Not Yet</option>
+        <option value="done" style="color: green;background-color:#7FFF89">Done</option>
+        <option value="in-progress" style="color: yellow;background-color:#95A100">In Progress</option>
+        <option value="not-yet" style="color: red;background-color:#810202">Not Yet</option>
     `;
 
     const editButton = document.createElement("button");
