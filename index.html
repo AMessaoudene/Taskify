@@ -195,7 +195,7 @@
                 categoryElement.textContent = taskCategory;
 
                 const editButton = document.createElement("button");
-                editButton.classList.add("btn", "btn-primary", "btn-sm", "mx-2", "edit-button");
+                editButton.classList.add("btn", "btn-light", "btn-sm", "mx-2", "edit-button");
                 editButton.innerText = "Edit";
                 editButton.addEventListener("click", function () {
                     editTask(listItem);
@@ -226,6 +226,10 @@
                     nameElement.style.display = "none";
                     listItem.insertBefore(inputElement, nameElement);
                     editButton.innerText = "OK";
+
+                    // Change button classes to make it green
+                    editButton.classList.remove("btn-light");
+                    editButton.classList.add("btn-success");
                     inputElement.focus();
                 } else if (editButton.innerText === "OK") {
                     const inputElement = listItem.querySelector(".task-name-input");
@@ -233,6 +237,10 @@
                     nameElement.style.display = "inline";
                     inputElement.remove();
                     editButton.innerText = "Edit";
+
+                    // Change button classes to make it light
+                    editButton.classList.remove("btn-success");
+                    editButton.classList.add("btn-light");
                 }
             }
 
@@ -243,5 +251,6 @@
             }
         });
     </script>
+
 </body>
 </html>
