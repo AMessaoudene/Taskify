@@ -30,3 +30,6 @@ body {
 .form-floating label {
     pointer-events: none;
 }
+a {
+    text-decoration: none;
+}
