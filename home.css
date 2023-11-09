@@ -65,3 +65,47 @@ a {
 .task-status {
     margin-top: 5px;
 }
+.newsletter-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.newsletter-container h2 {
+    color: #333;
+}
+
+.newsletter-container p {
+    color: #555;
+}
+
+.newsletter-container form {
+    margin-top: 15px;
+}
+
+.newsletter-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.newsletter-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.newsletter-container button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.newsletter-container button:hover {
+    background-color: #45a049;
+}
