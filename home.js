@@ -98,32 +98,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function editTask(listItem) {
-        const nameElement = listItem.querySelector(".task-name");
-        const editButton = listItem.querySelector(".edit-button");
-        if (editButton.innerText === "Edit") {
-            const inputElement = document.createElement("input");
-            inputElement.classList.add("form-control", "task-name-input");
-            inputElement.value = nameElement.textContent;
-            nameElement.style.display = "none";
-            listItem.querySelector(".task-left").insertBefore(inputElement, nameElement);
-            editButton.innerText = "OK";
+    const nameElement = listItem.querySelector(".task-name");
+    const editButton = listItem.querySelector(".edit-button");
 
-            // Change button classes to make it green
-            editButton.classList.remove("btn-light");
-            editButton.classList.add("btn-success");
-            inputElement.focus();
-        } else if (editButton.innerText === "OK") {
-            const inputElement = listItem.querySelector(".task-name-input");
-            nameElement.textContent = inputElement.value;
-            nameElement.style.display = "inline";
-            inputElement.remove();
-            editButton.innerText = "Edit";
+    if (editButton.innerText === "Edit") {
+        const inputElement = document.createElement("input");
+        inputElement.classList.add("form-control", "task-name-input");
+        inputElement.value = nameElement.textContent.trim();
+        nameElement.style.display = "none";
+        listItem.insertBefore(inputElement, listItem.firstChild);
+        editButton.innerText = "OK";
 
-            // Change button classes to make it light
-            editButton.classList.remove("btn-success");
-            editButton.classList.add("btn-light");
-        }
+        // Change button classes to make it green
+        editButton.classList.remove("btn-light");
+        editButton.classList.add("btn-success");
+        inputElement.focus();
+    } else if (editButton.innerText === "OK") {
+        const inputElement = listItem.querySelector(".task-name-input");
+        nameElement.textContent = inputElement.value.trim();
+        nameElement.style.display = "block"; // Adjust this line based on your CSS
+        inputElement.remove();
+        editButton.innerText = "Edit";
+
+        // Change button classes to make it light
+        editButton.classList.remove("btn-success");
+        editButton.classList.add("btn-light");
     }
+}
 
     function deleteTask(listItem) {
         if (confirm("Are you sure you want to delete this task?")) {
