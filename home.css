@@ -1,5 +1,8 @@
-a {
-    text-decoration: none !important;
+/* Global Styles */
+body {
+    background: linear-gradient(135deg, #3494E6, #EC6EAD);
+    color: #333;
+    font-family: Arial, sans-serif;
 }
 
 body {
@@ -10,69 +13,97 @@ body {
     padding: 0;
 }
 
-.Profile-Picture {
-    border-radius: 100px;
-    height: 30px;
-    width: 30px;
+/* Navbar Styles */
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.social-media {
-    color: black;
+.navbar-brand img {
+    border-radius: 50%;
 }
 
-.flex-navbar {
-    display: flex;
+.nav-link {
+    color: #333 !important;
+    font-weight: 600;
 }
 
-.flex-navbar-item {
-    flex: 1;
+/* Carousel Styles */
+.carousel-item img {
+    max-height: 400px;
+    object-fit: cover;
 }
 
-.flex-navbar-item-middle-item {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+/* Blockquote Styles */
+blockquote {
+    font-style: italic;
+    font-size: 20px;
+    color: #555;
 }
 
-.nav-item.dropdown .dropdown-toggle::after {
-    display: none;
+/* Task Form Styles */
+#taskForm {
+    margin-top: 20px;
 }
 
-/* Updated styles for task items */
+.form-control {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #3494E6;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Task List Styles */
+.list-group {
+    margin-top: 20px;
+}
+
 .list-group-item {
     display: flex;
     justify-content: space-between;
-}
-
-.task-left {
-    display: flex;
-    flex-direction: column;
-    flex: 2;
-}
-
-.task-center {
-    display: flex;
-    flex-direction: column;
-    flex: 3;
     align-items: center;
-}
-
-.task-right {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    align-items: center;
+    border: none;
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .task-name,
 .task-category {
-    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
 }
 
-.task-date-time,
-.task-status {
-    margin-top: 5px;
+.task-date-time {
+    font-style: italic;
+    color: #777;
 }
+
+.task-status select {
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Newsletter Styles */
 .newsletter-container {
     background-color: #f0f0f0;
     padding: 20px;
@@ -81,109 +112,42 @@ body {
 }
 
 .newsletter-container h2 {
+    font-size: 24px;
     color: #333;
+    margin-bottom: 10px;
 }
 
 .newsletter-container p {
+    font-size: 16px;
     color: #555;
-}
-
-.newsletter-container form {
-    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .newsletter-container label {
+    font-weight: 600;
+    color: #333;
     display: block;
     margin-bottom: 5px;
-    color: #333;
 }
 
 .newsletter-container input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 10px;
-    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .newsletter-container button {
     background-color: #4caf50;
-    color: #fff;
-    padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #fff;
     cursor: pointer;
 }
 
 .newsletter-container button:hover {
     background-color: #45a049;
-}
-footer {
-    padding: 10px 0;
-    margin-top: 10%;
-    text-align: center;
-    color:black;
-}
-
-footer h3 {
-    color: #333;
-    font-size: 24px;
-}
-
-footer a {
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
-}
-
-/* Social Media Icons */
-.social-media svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    fill: linear-gradient(135deg, #3494E6, #EC6EAD);
-    /* Use 'fill' to set SVG icon color */
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .navbar-toggler-icon {
-        background-color: #3494E6;
-    }
-
-    .navbar-toggler-icon::before, .navbar-toggler-icon::after {
-        background-color: #3494E6;
-    }
-}
-footer {
-    padding: 20px 0;
-    text-align: center;
-}
-
-footer h3 {
-    color: #333;
-    font-size: 24px;
-}
-
-footer a {
-    text-decoration: none;
-    color: #3494E6;
-    font-weight: 600;
-}
-
-/* Social Media Icons */
-.social-media svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .navbar-toggler-icon {
-        background-color: #3494E6;
-    }
-
-    .navbar-toggler-icon::before, .navbar-toggler-icon::after {
-        background-color: #3494E6;
-    }
 }
