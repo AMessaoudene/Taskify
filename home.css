@@ -2,6 +2,14 @@ a {
     text-decoration: none !important;
 }
 
+body {
+    background: linear-gradient(135deg, #3494E6, #EC6EAD);
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .Profile-Picture {
     border-radius: 100px;
     height: 30px;
@@ -108,4 +116,74 @@ a {
 
 .newsletter-container button:hover {
     background-color: #45a049;
+}
+footer {
+    padding: 10px 0;
+    margin-top: 10%;
+    text-align: center;
+    color:black;
+}
+
+footer h3 {
+    color: #333;
+    font-size: 24px;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+/* Social Media Icons */
+.social-media svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    fill: linear-gradient(135deg, #3494E6, #EC6EAD);
+    /* Use 'fill' to set SVG icon color */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-toggler-icon {
+        background-color: #3494E6;
+    }
+
+    .navbar-toggler-icon::before, .navbar-toggler-icon::after {
+        background-color: #3494E6;
+    }
+}
+footer {
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer h3 {
+    color: #333;
+    font-size: 24px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #3494E6;
+    font-weight: 600;
+}
+
+/* Social Media Icons */
+.social-media svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-toggler-icon {
+        background-color: #3494E6;
+    }
+
+    .navbar-toggler-icon::before, .navbar-toggler-icon::after {
+        background-color: #3494E6;
+    }
 }
