@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskDateTimeInput = document.getElementById("taskDateTime");
     const taskList = document.getElementById("taskList");
 
+    // Set the taskDateTimeInput to the current date and time when the page loads
+    const currentDateTime = new Date();
+    const currentYear = currentDateTime.getFullYear();
+    const currentMonth = String(currentDateTime.getMonth() + 1).padStart(2, '0');
+    const currentDay = String(currentDateTime.getDate()).padStart(2, '0');
+    const currentHour = String(currentDateTime.getHours()).padStart(2, '0');
+    const currentMinute = String(currentDateTime.getMinutes()).padStart(2, '0');
+    const currentDateTimeString = `${currentYear}-${currentMonth}-${currentDay}T${currentHour}:${currentMinute}`;
+    taskDateTimeInput.value = currentDateTimeString;
+    taskDateTimeInput.min = currentDateTimeString;
+
     taskForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const taskName = taskNameInput.value.trim();
@@ -13,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (taskName !== "") {
             addTask(taskName, taskCategory, taskDateTime);
             taskNameInput.value = "";
-            taskDateTimeInput.value = "";
+            taskDateTimeInput.value = currentDateTimeString; // Reset to current date and time
         }
     });
-
+});
     function addTask(taskName, taskCategory, taskDateTime) {
     const listItem = document.createElement("li");
     listItem.classList.add("list-group-item", `list-group-item-${taskCategory}`);
@@ -130,5 +141,4 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirm("Are you sure you want to delete this task?")) {
             listItem.remove();
         }
-    }
-});
+    };
