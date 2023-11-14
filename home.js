@@ -28,7 +28,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-    function addTask(taskName, taskCategory, taskDateTime) {
+
+function createCustomFileInput() {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.style.display = "none";
+
+    const customFileInput = document.createElement("div");
+    customFileInput.classList.add("custom-file-input");
+    customFileInput.innerHTML = `
+        <label class="custom-file-label">Choose a file</label>
+        <button class="custom-file-browse">Browse</button>
+    `;
+
+    customFileInput.appendChild(fileInput);
+
+    customFileInput.querySelector(".custom-file-browse").addEventListener("click", function () {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener("change", function () {
+        const label = customFileInput.querySelector(".custom-file-label");
+        if (fileInput.files.length > 0) {
+            label.textContent = fileInput.files[0].name;
+        } else {
+            label.textContent = "Choose a file";
+        }
+    });
+
+    return customFileInput;
+}
+
+function addTask(taskName, taskCategory, taskDateTime) {
     const listItem = document.createElement("li");
     listItem.classList.add("list-group-item", `list-group-item-${taskCategory}`);
 
@@ -36,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     row1.classList.add("d-flex", "flex-row", "mb-3");
 
     const row2 = document.createElement("div");
-    row2.classList.add("d-flex", "flex-row");
+    row2.classList.add("d-flex", "flex-row", "justify-content-between");
 
     // Create columns for the first row
     const nameColumn = document.createElement("div");
@@ -77,6 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     editButtonColumn.appendChild(editButton);
 
+    // Create a new column for the custom file input in the second row
+    const fileInputColumn = document.createElement("div");
+    fileInputColumn.classList.add("col-3");
+
+    const customFileInput = createCustomFileInput();
+    fileInputColumn.appendChild(customFileInput);
+
     const deleteButtonColumn = document.createElement("div");
     deleteButtonColumn.classList.add("col-6");
 
@@ -96,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     row1.appendChild(statusColumn);
 
     row2.appendChild(editButtonColumn);
+    row2.appendChild(fileInputColumn);
     row2.appendChild(deleteButtonColumn);
 
     listItem.appendChild(row1);
@@ -107,8 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     taskList.appendChild(listItem);
 }
 
-
-    function editTask(listItem) {
+function editTask(listItem) {
     const nameElement = listItem.querySelector(".task-name");
     const editButton = listItem.querySelector(".edit-button");
 
@@ -137,8 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 }
 
-    function deleteTask(listItem) {
-        if (confirm("Are you sure you want to delete this task?")) {
-            listItem.remove();
-        }
-    };
+function deleteTask(listItem) {
+    if (confirm("Are you sure you want to delete this task?")) {
+        listItem.remove();
+    }
+}

@@ -146,3 +146,35 @@ blockquote {
 .newsletter-container button:hover {
     background-color: #45a049;
 }
+input[type="file"] {
+        display: none; /* Hide the default input */
+    }
+
+    /* Style the custom file input container */
+    .custom-file-input {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
+
+    /* Style the label inside the custom file input container */
+    .custom-file-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Style the browse button */
+    .custom-file-browse {
+        background-color: #3498db;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    /* Style the custom file input when a file is selected */
+    input[type="file"]:not(:empty) + .custom-file-input .custom-file-label {
+        background-color: #d4d4d4;
+    }

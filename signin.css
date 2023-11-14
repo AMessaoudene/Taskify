@@ -2,11 +2,15 @@ body {
     margin: 0;
     padding: 0;
 }
-
+a {
+    text-decoration: none;
+}
 .navbar {
     background-color: #f8f9fa;
 }
-
+main div div form div{
+    margin-bottom: 7%;
+}
 .form-container {
     display: flex;
     justify-content: center;

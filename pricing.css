@@ -16,7 +16,9 @@ body {
     color: #fff;
     /* Light text color */
 }
-
+h1{
+    margin-bottom: 10%;
+}
 .navbar {
     background-color: #333;
     /* Dark navbar background color */
