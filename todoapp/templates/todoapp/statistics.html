@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Statistics</title>
+</head>
+
+<body>
+    <h1>Task Completion Statistics</h1>
+
+    <!-- General Statistics -->
+    <h2>General Statistics</h2>
+    <p>Total Completed Tasks: {{ total_completed_tasks }}</p>
+
+    <!-- Completed Tasks by Type -->
+    <h2>Completed Tasks by Type</h2>
+    <ul>
+        {% for task_type, percentage in percentage_by_type.items %}
+        <li>{{ task_type }}: {{ percentage }}%</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Completed Tasks by Priority -->
+    <h2>Completed Tasks by Priority</h2>
+    <ul>
+        {% for task_priority, percentage in percentage_by_priority.items %}
+        <li>{{ task_priority }}: {{ percentage }}%</li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>

@@ -1,0 +1,901 @@
+{% extends "todoapp/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskify - Planifier</title>
+  <meta name="keywords" content="Taskify, ToDo List, Tasks, Organize">
+  <meta name="author" content="MESSAOUDENE Abderrahmane, LAHMER Rania Nafissa">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/todo.css">
+</head>
+<style>
+  body{
+  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f0f8ff;
+}
+.mb-4 {
+  max-width: 600px; /* Largeur maximale du conteneur */
+  margin: 20px auto; /* Centrer le conteneur */
+  border: 2px solid blue; /* Bordure bleue autour du conteneur */
+  padding: 20px; /* Espacement à l'intérieur du conteneur */
+  box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.5); /* Effet ombre bleue */
+  background-color: #F0F8FF;
+}
+
+.form-control{
+  padding: 5px; /* Ajuster le padding selon vos préférences */
+  border: 2px solid blue; /* Bordure bleue */
+  border-radius: 2px; /* Coins arrondis */
+  background-color: white; /* Couleur de fond */
+}
+
+h1 {
+  font-size: 3em; /* Taille de la police */
+  margin: 0; /* Supprime les marges par défaut */
+  color: black; /* Couleur du texte en bleu */
+  text-transform: uppercase; /* Mettre le texte en majuscules */
+  animation: none; /* Arrêter l'animation */
+}
+#taskType{
+  padding: 5px; /* Ajuster le padding selon vos préférences */
+  border: 2px solid blue; /* Bordure bleue */
+  border-radius: 2px; /* Coins arrondis */
+  background-color: white; /* Couleur de fond */
+  color: black; /* Couleur du texte */
+}
+#taskType:focus {
+  outline: none;
+  border-color: darkblue; /* Couleur de la bordure en focus */
+}
+#taskPriority{
+  padding: 5px; /* Ajuster le padding selon vos préférences */
+  border: 2px solid blue; /* Bordure bleue */
+  border-radius: 2px; /* Coins arrondis */
+  background-color: white; /* Couleur de fond */
+  color: black; /* Couleur du texte */
+}
+
+#taskPriority:focus {
+  outline: none;
+  border-color: darkblue; /* Couleur de la bordure en focus */
+}
+nav{
+  background-color: #F0F8FF;
+  display: flex;
+  height:60px;
+  justify-content: space-between;
+  align-items: center;
+}
+nav img{
+  border-radius: 50%;
+  width:60px;
+  height: 50px;
+}
+.nav-links{
+  flex: 1;
+  text-align: right;
+}
+.nav-links ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 7px 9px;
+  position: relative;
+}
+.nav-links ul li a{
+  color: blue;
+  text-decoration: none;
+  font-size: 18px;
+  justify-content: space-between;
+  font-style: italic;
+  font-weight: bold;
+}
+.nav-links ul li::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: blue;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+  width: 100%;
+}
+.stats-section {
+  position: relative;
+  background-color: white;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 3px solid blue;
+  /* Bordure bleue */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Style pour le titre h1 */
+.stats-section h1 {
+  text-align: center;
+  color: black;
+  margin-bottom: 30px;
+}
+
+/* Style pour les titres h2 */
+.stats-section h2 {
+  position: relative;
+  margin-top: 40px;
+  color: blue;
+  text-align: center;
+  font-size: 32px;
+  padding-bottom: 20px;
+}
+
+/* Style pour les titres h2::before (éléments décoratifs) */
+.stats-section h2::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: blue;
+}
+
+/* Style pour les listes */
+.stats-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Style pour les éléments de liste li */
+.stats-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-top: 20px;
+  color: red;
+  font-size: 18px;
+}
+
+/* Style pour les balles personnalisées */
+.stats-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3498db;
+}
+/* Header styling */
+.title-box {
+  background-color: #3498db;
+  padding: 20px 0;
+  color: white;
+}
+
+.title-box h1 {
+  font-size: 3em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Form styling */
+.form-group {
+  text-align: left;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.form-control {
+  padding: 10px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+.form-select {
+  padding: 10px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Table styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #3498db;
+  color: white;
+}
+
+.table-danger,
+.table-warning,
+.table-info {
+  border: 2px solid #3498db;
+  border-radius: 5px;
+}
+
+.table-danger td,
+.table-warning td,
+.table-info td {
+  border-top: 1px solid #3498db;
+}
+
+/* Stats section styling */
+.stats-section {
+  background-color: white;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 3px solid #3498db;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.stats-section h1 {
+  color: #3498db;
+  margin-bottom: 30px;
+}
+
+.stats-section h2 {
+  color: #3498db;
+  margin-top: 40px;
+  font-size: 28px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.stats-section h2::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: #3498db;
+}
+
+.stats-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.stats-list li {
+  margin-top: 20px;
+  font-size: 18px;
+  position: relative;
+  color: #333;
+}
+
+.stats-list li::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3498db;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Button styles */
+.btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: 2px solid #e74c3c;
+  color: white;
+}
+#delete-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      border: 1px solid #ddd;
+    }
+
+    #delete-table th {
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #delete-table td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background-color: #3498db;
+      border: 2px solid #3498db;
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: #e74c3c;
+      border: 2px solid #e74c3c;
+      color: white;
+    }
+
+</style>
+<body>
+          <div>
+            <h1>TASKIFY</h1>
+          </div>
+          <form method="POST" class="mb-4">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="form1" class="form-label"><strong style="color: blue;">Tâche</strong></label>
+                  <input type="text" id="form1" class="form-control" name="task" placeholder="Entrez votre tâche" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="dueDate" class="form-label"><strong style="color: blue;">Date</strong></label>
+                  <input type="datetime-local" class="form-control" id="dueDate" name="due_date" required>
+                  <script>
+                    // Get the current date and time in the local timezone
+                      const now = new Date();
+                      const year = now.getFullYear();
+                      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                      const day = now.getDate().toString().padStart(2, '0');
+                      const hours = now.getHours().toString().padStart(2, '0');
+                      const minutes = now.getMinutes().toString().padStart(2, '0');
+
+                      // Set the minimum value of the input to the current date and time
+                      const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+                      document.getElementById("dueDate").min = minDateTime;
+
+                      // Set the value of the input to the current date and time
+                      const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+                      document.getElementById("dueDate").value = currentDateTime;
+
+                      // Function to handle change event on the input
+                      document.getElementById("dueDate").addEventListener("input", function (event) {
+                        const selectedDateTime = new Date(event.target.value);
+                        if (selectedDateTime < now) {
+                          event.target.value = currentDateTime; // Reset to current date and time if a past date is selected
+                        }
+                      });
+                  </script>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="taskType" class="form-label"><strong style="color: blue;">Type de tâche</strong></label>
+                <select class="form-select" id="taskType" name="task_type" required>
+                  <option value="Travail">Travail</option>
+                  <option value="Sport">Sport</option>
+                  <option value="Études">Études</option>
+                  <option value="Loisirs">Loisirs</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="taskType" class="form-label">Priorité de tâche</label>
+                <select class="form-select" id="taskPriority" name="task_Priority" required>
+                  <option value="High">Élevé</option>
+                  <option value="Medium">Moyen</option>
+                  <option value="Less">Faible</option>
+                </select>
+              </div>
+              <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-primary">Ajouter une tâche</button>
+              </div>
+            </div>
+          </form>
+          <div class="container mt-4">
+            <hr>
+            <h2>Tâches à haute priorité</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Tâche</th>
+                      <th scope="col">Date & Heure</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">État</th>
+                      <th scope="col" colspan="3">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for todo_item in high_priority_tasks %}
+                <tr class="table-danger">
+                  <td>
+                    <span class="editable-task" data-task-id="{{ todo_item.id }}" onclick="makeEditable(this)">{{todo_item.todo_name}}</span>
+                    <script>
+                      function makeEditable(element) {
+                          let isEditing = false;
+                          let originalText = '';
+
+                          element.addEventListener('mouseup', () => {
+                            if (!isEditing) {
+                              isEditing = true;
+                              originalText = element.textContent;
+
+                              element.setAttribute('contenteditable', true);
+                              element.focus();
+
+                              // Save original text on selection start
+                              element.addEventListener('selectstart', () => {
+                                originalText = element.textContent;
+                              });
+
+                              // Listen for key press events
+                              element.addEventListener('keydown', (event) => {
+                                if (event.key === 'Enter' || event.key === 'Escape') {
+                                  // If Enter key or Escape key is pressed, end editing
+                                  isEditing = false;
+                                  element.removeAttribute('contenteditable');
+                                  const newText = element.textContent.trim();
+
+                                  if (newText !== originalText && newText !== '') {
+                                    const taskId = element.dataset.taskId;
+                                    fetch(`/edit_task/${taskId}/`, {
+                                      method: 'POST',
+                                      headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                        'X-CSRFToken': '{{ csrf_token }}',
+                                      },
+                                      body: `updated_task_name=${newText}`,
+                                    }).then(response => {
+                                      if (response.ok) {
+                                        element.textContent = newText;
+                                      } else {
+                                        element.textContent = originalText;
+                                      }
+                                    }).catch(error => {
+                                      console.error('Error:', error);
+                                      element.textContent = originalText;
+                                    });
+                                  } else {
+                                    element.textContent = originalText;
+                                  }
+                                }
+                              });
+                            }
+                          });
+                        }
+                    </script>
+                  </td>
+                  <td>{{ todo_item.due_date }}</td>
+                  <td>{{ todo_item.task_type }}</td>
+                  <td>
+                    {% if not todo_item.status %}
+                      En cours
+                    {% else %}
+                      Completé
+                    {% endif %}
+                  </td>
+                  <td>
+                  <td>
+                    {% if todo_item.status != 'Done' %}
+                    <form method="POST" action="{% url 'mark_as_done' todo_item.id %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="task_id" value="{{ todo_item.id }}">
+                      <button type="submit" class="btn btn-success btn-sm">Marquer comme terminé</button>
+                    </form>
+                    {% else %}
+                    {{ todo_item.status }}
+                    {% endif %}
+                    </d>
+                  <td>
+                    <form method="POST" action="{% url 'delete_task' todo_item.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                  </td>
+                  </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <hr>
+                <h2>Tâches de priorité moyenne</h2>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tâche</th>
+                      <th scope="col">Date & Heure</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">État</th>
+                      <th scope="col" colspan="3">Actions</th>
+                    </tr>
+                  </thead>
+                {% for todo_item in medium_priority_tasks %}
+                <tr class="table-warning">
+                  <td>
+                    <span class="editable-task" data-task-id="{{ todo_item.id }}" onclick="makeEditable(this)">{{todo_item.todo_name}}</span>
+                    <script>
+                      function makeEditable(element) {
+                          let isEditing = false;
+                          let originalText = '';
+
+                          element.addEventListener('mouseup', () => {
+                            if (!isEditing) {
+                              isEditing = true;
+                              originalText = element.textContent;
+
+                              element.setAttribute('contenteditable', true);
+                              element.focus();
+
+                              // Save original text on selection start
+                              element.addEventListener('selectstart', () => {
+                                originalText = element.textContent;
+                              });
+
+                              // Listen for key press events
+                              element.addEventListener('keydown', (event) => {
+                                if (event.key === 'Enter' || event.key === 'Escape') {
+                                  // If Enter key or Escape key is pressed, end editing
+                                  isEditing = false;
+                                  element.removeAttribute('contenteditable');
+                                  const newText = element.textContent.trim();
+
+                                  if (newText !== originalText && newText !== '') {
+                                    const taskId = element.dataset.taskId;
+                                    fetch(`/edit_task/${taskId}/`, {
+                                      method: 'POST',
+                                      headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                        'X-CSRFToken': '{{ csrf_token }}',
+                                      },
+                                      body: `updated_task_name=${newText}`,
+                                    }).then(response => {
+                                      if (response.ok) {
+                                        element.textContent = newText;
+                                      } else {
+                                        element.textContent = originalText;
+                                      }
+                                    }).catch(error => {
+                                      console.error('Error:', error);
+                                      element.textContent = originalText;
+                                    });
+                                  } else {
+                                    element.textContent = originalText;
+                                  }
+                                }
+                              });
+                            }
+                          });
+                        }
+                    </script>
+                  </td>
+                  <td>{{ todo_item.due_date }}</td>
+                  <td>{{ todo_item.task_type }}</td>
+                  <td>
+                    {% if not todo_item.status %}
+                      En cours
+                    {% else %}
+                      Completé
+                    {% endif %}
+                  </td>
+                  <td>
+                  <td>
+                    {% if todo_item.status != 'Done' %}
+                    <form method="POST" action="{% url 'mark_as_done' todo_item.id %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="task_id" value="{{ todo_item.id }}">
+                      <button type="submit" class="btn btn-success btn-sm">Marquer comme terminé</button>
+                    </form>
+                    {% else %}
+                    {{ todo_item.status }}
+                    {% endif %}
+                    </d>
+                  <td>
+                    <form method="POST" action="{% url 'delete_task' todo_item.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                  </td>
+                  </td>
+                </tr>
+                {% endfor %}
+                </table>
+                <hr>
+                <h2>Tâches de moindre priorité</h2>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tâche</th>
+                      <th scope="col">Date & Heure</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">État</th>
+                      <th scope="col" colspan="3">Actions</th>
+                    </tr>
+                  </thead>
+                {% for todo_item in less_priority_tasks %}
+                <tr class="table-info">
+                  <td>
+                    <span class="editable-task" data-task-id="{{ todo_item.id }}" onclick="makeEditable(this)">{{todo_item.todo_name}}</span>
+                    <script>
+                      function makeEditable(element) {
+                          let isEditing = false;
+                          let originalText = '';
+
+                          element.addEventListener('mouseup', () => {
+                            if (!isEditing) {
+                              isEditing = true;
+                              originalText = element.textContent;
+
+                              element.setAttribute('contenteditable', true);
+                              element.focus();
+
+                              // Save original text on selection start
+                              element.addEventListener('selectstart', () => {
+                                originalText = element.textContent;
+                              });
+
+                              // Listen for key press events
+                              element.addEventListener('keydown', (event) => {
+                                if (event.key === 'Enter' || event.key === 'Escape') {
+                                  // If Enter key or Escape key is pressed, end editing
+                                  isEditing = false;
+                                  element.removeAttribute('contenteditable');
+                                  const newText = element.textContent.trim();
+
+                                  if (newText !== originalText && newText !== '') {
+                                    const taskId = element.dataset.taskId;
+                                    fetch(`/edit_task/${taskId}/`, {
+                                      method: 'POST',
+                                      headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                        'X-CSRFToken': '{{ csrf_token }}',
+                                      },
+                                      body: `updated_task_name=${newText}`,
+                                    }).then(response => {
+                                      if (response.ok) {
+                                        element.textContent = newText;
+                                      } else {
+                                        element.textContent = originalText;
+                                      }
+                                    }).catch(error => {
+                                      console.error('Error:', error);
+                                      element.textContent = originalText;
+                                    });
+                                  } else {
+                                    element.textContent = originalText;
+                                  }
+                                }
+                              });
+                            }
+                          });
+                        }
+                    </script>
+                  </td>
+                  <td>{{ todo_item.due_date }}</td>
+                  <td>{{ todo_item.task_type }}</td>
+                  <td>
+                    {% if not todo_item.status %}
+                      En cours
+                    {% else %}
+                      Completé
+                    {% endif %}
+                  </td>
+                  <td>
+                  <td>
+                    {% if todo_item.status != 'Done' %}
+                    <form method="POST" action="{% url 'mark_as_done' todo_item.id %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="task_id" value="{{ todo_item.id }}">
+                      <button type="submit" class="btn btn-success btn-sm">Marquer comme terminé</button>
+                    </form>
+                    {% else %}
+                    {{ todo_item.status }}
+                    {% endif %}
+                    </td>
+                  <td>
+                    <form method="POST" action="{% url 'delete_task' todo_item.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                  </td>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              </table>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><hr><br>
+    <section class="stats-section">
+      <h1>Statistiques</h1>
+
+      <!-- Statistiques générales -->
+      <h2>Statistiques générales</h2>
+      <p>Tâches totales achevées : {{ total_completed_tasks }} / {{total_tasks}}</p>
+
+      <!-- Tâches achevées par type -->
+      <h2>Tâches achevées par type</h2>
+      <ul class="stats-list">
+        {% for task_type, percentage in percentage_by_type.items %}
+        <li><span></span>{{ task_type }} : {{ percentage }}%</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Tâches achevées par priorité -->
+      <h2>Tâches achevées par priorité</h2>
+      <ul class="stats-list">
+        {% for task_priority, percentage in percentage_by_priority.items %}
+        <li><span class="bullet"></span>{{ task_priority }} : {{ percentage }}%</li>
+        {% endfor %}
+      </ul>
+    </section>
+    <br><br>
+    <h2>Tâches supprimées</h2>
+          <table class="table" id="delete-table">
+            <thead>
+              <th scope="col">Nom</th>
+              <th scope="col"> </th>
+            </thead>
+            <tbody>
+              {% for deleted_task in deleted_tasks %}
+              <tr>
+                <td>{{ deleted_task.todo_name }}</td>
+                <td>
+                  <!-- Restore button -->
+                  <button onclick="restoreTask({{ deleted_task.id }})" class="btn btn-primary btn-sm">Restaurer</button>
+                  <!-- Permanent delete button -->
+                  <button onclick="permanentDeleteTask({{ deleted_task.id }})" class="btn btn-danger btn-sm">Supprimer définitivement</button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <script>
+            // Function to restore a task
+            function restoreTask(taskId) {
+              fetch(`/restore/${taskId}/`, {
+                method: 'POST',
+                headers: {
+                  'X-CSRFToken': '{{ csrf_token }}',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ taskId: taskId })
+              })
+                .then(response => {
+                  if (response.ok) {
+                    // Reload the page or update the DOM to reflect changes
+                    location.reload(); // Example: Reloading the page after successful restoration
+                  } else {
+                    // Handle errors if any
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  // Handle errors if any
+                });
+            }
+
+            // Function to permanently delete a task
+            function permanentDeleteTask(taskId) {
+              fetch(`/permanent_delete/${taskId}/`, {
+                method: 'POST',
+                headers: {
+                  'X-CSRFToken': '{{ csrf_token }}',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ taskId: taskId })
+              })
+                .then(response => {
+                  if (response.ok) {
+                    // Reload the page or update the DOM to reflect changes
+                    location.reload(); // Example: Reloading the page after successful permanent deletion
+                  } else {
+                    // Handle errors if any
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  // Handle errors if any
+                });
+            }
+          </script>
+</body>
+
+</html>
+{% endblock %}

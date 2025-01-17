@@ -1,0 +1,127 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+header {
+    width: 100%;
+    background-image: url('../static/images/clock.png');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: auto;
+}
+
+nav {
+    background-color: #F0F8FF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+nav img {
+    border-radius: 50%;
+    width: 60px;
+    height: 50px;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li {
+    display: inline-block;
+    padding: 7px 12px;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color: blue;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: width 0.5s ease;
+    /* Smooth transition for underline */
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+nav .fa {
+    display: none;
+}
+.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.auth-links li {
+    margin-left: 15px;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        background-color: #F0F8FF;
+        height: 100%;
+        width: 100%;
+        top: 80px; /* Adjust as needed */
+        right: -100%;
+        text-align: center;
+        display: block;
+        transition: 0.5s;
+    }
+
+    .nav-links ul {
+        margin-top: 50px; /* Adjust as needed */
+    }
+
+    .nav-links ul li {
+        display: block;
+        margin-bottom: 20px; /* Adjust as needed */
+    }
+
+    .nav-links ul li::after {
+        width: 0%;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links ul li:hover::after {
+        width: 0;
+    }
+
+    nav img {
+        width: 50px; /* Adjust as needed */
+        height: auto;
+        margin-left: 15px;
+    }
+
+    .nav-links ul li a {
+        font-size: 18px; /* Adjust as needed */
+    }
+}

@@ -1,0 +1,155 @@
+.header {
+    min-height: 100vh;
+    width: 100%;
+    background: url(Design\ sans\ titre.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+a{
+    text-decoration: none;
+}
+nav {
+    background: url(Light\ Blue\ Solid\ coordinate\ -\ baby\ blue\,\ sky\ blue\,\ pastel\ blue\ .jpg);
+    display: flex;
+    padding: 1% 3%;
+    justify-content: space-between;
+    align-items: center;
+    margin-right:5%;
+}
+
+nav img {
+    border-radius: 50%;
+    width: 60px;
+    height: 50px;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 7px 9px;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
+.text-box {
+    width: 90%;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.text-box h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(lightblue, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-box p {
+    margin: 10px 0 40px;
+    font-size: 20px;
+    color: black;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid blue;
+    border-radius: 50%;
+    font-size: 20px;
+    color: blue;
+    text-decoration: none;
+    margin: 30px 15px 30px 0;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 24px 38px;
+    background: blue;
+    border-radius: 40px;
+    box-shadow: 0 0 10px blue;
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.hero-btn:hover {
+    border: 2px solid black;
+    background: blue;
+    transition: 2s;
+}
+
+nav .fa {
+    display: none;
+
+}
+
+@media(max-width:700px) {
+    .text-boc h1 {
+        font-size: 20px;
+    }
+
+    .nav-links ul li {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        background: black;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200 px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    nav .fa {
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .nav-links ul {
+        padding: 30px;
+
+    }
+}

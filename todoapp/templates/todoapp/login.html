@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskify - Connexion </title>
+    <link rel="stylesheet" href="../../static/login.css">
+    <meta name="keywords" content="Taskify, ToDo List, Tasks, Organize">
+    <meta name="author" content="MESSAOUDENE Abderrahmane, LAHMER Rania Nafissa">
+    <link rel="icon" type="image/x-icon" href="../../static/images/logo.png">
+</head>
+<body>
+  {% load socialaccount %}
+  <div class="wrapper">
+    <h2>Connexion</h2><br>
+    <form action="#" method="POST">
+      {% csrf_token %}
+      <div class="input-box">
+        <label><strong>Nom d'utilisateur:</strong><input type="text" placeholder="Entrez votre nom d'utilisateur:" required name="uname"></label>
+      </div>
+      <div class="input-box">
+        <label><strong>Mot de passe:</strong><input type="password" placeholder="Entrez votre mot de passe:" required name="pass"></label>
+      </div>
+      <div class="policy">
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Se connecter">
+      </div>
+      <div class="text">
+        <h3>Nouveau ici? <a href="{% url 'register' %}">S'inscrire maintenant !</a></h3>
+      </div>
+      <!-- <div>
+        <a href="{% provider_login_url 'google' %}">Se connecter avec Google</a>
+      </div> -->
+    </form>
+  </div>
+</body>
+
+</html>

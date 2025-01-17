@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Taskify - Contact</title>
+    <meta name="keywords" content="Taskify, ToDo List, Tasks, Organize">
+    <meta name="author" content="MESSAOUDENE Abderrahmane, LAHMER Rania Nafissa">
+    <link rel="icon" type="image/x-icon" href="../../static/images/logo.png">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #F0F8FF;
+            /* Fond bleu */
+            color: white;
+        }
+
+        .contact-form {
+            margin-top: 50px;
+        }
+
+        .form-container {
+            background-color: white;
+            /* Fond blanc pour le conteneur */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+            /* Ombre légère */
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .message-icon {
+            color: #007bff;
+        }
+
+        .contact-title {
+            color: black;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-title i {
+            margin-right: 10px;
+        }
+
+        nav h1 {
+            color: #00008B;
+        }
+
+        .header {
+            min-height: 10vh;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        nav {
+            background-color: #F0F8FF;
+            height: 60px;
+            display: flex;
+            padding: 1% 3%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            border-radius: 50%;
+            width: 60px;
+            height: 50px;
+        }
+
+        .nav-links {
+            flex: 1;
+            text-align: right;
+        }
+
+        .nav-links ul li {
+            list-style: none;
+            display: inline-block;
+            padding: 7px 9px;
+            position: relative;
+        }
+
+        .nav-links ul li a {
+            color: blue;
+            text-decoration: none;
+            font-size: 15px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .nav-links ul li::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: blue;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+
+        .nav-links ul li:hover::after {
+            width: 100%;
+        }
+        /*footer*/
+        .footer {
+            height: 70px;
+            background-color: #F0F8FF; /* Correction de la couleur de fond */
+            width: 100%;
+            text-align: center;
+        }
+        
+        .footer p{
+            color:black;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        .icons .fa{
+            color: blue;
+            margin: 0 13px;
+           cursor: pointer;
+             padding: 18px 0;
+        }
+        .nav--hidden{
+            transform: transaleY(-50px);
+        }
+        .thanks-message {
+            display: none;
+            text-align: center;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'index' %}" style="text-decoration: none;">
+            <h1>Taskify</h1>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" id="menubtn" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'home-page' %}">Planifier</a></li>
+            </ul>
+        </div>
+    </nav>
+    <p class="thanks-message" id="thanksMessage">Merci pour votre feedback!</p>
+    <script>
+        // JavaScript to handle form submission
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const thanksMessage = document.getElementById('thanksMessage');
+
+            form.addEventListener('submit', function (event) {
+                // Display the thanks message
+                thanksMessage.style.display = 'block';
+
+                // Optional: Hide the message after a few seconds
+                setTimeout(function () {
+                    thanksMessage.style.display = 'none';
+                }, 3000); // Adjust the time in milliseconds (e.g., 3000ms = 3 seconds)
+            });
+        });
+    </script>
+    <div class="container contact-form">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="form-container">
+                    <h2 class="contact-title">
+                        Contact
+                    </h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Votre Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Votre Email" required>
+                        </div>
+                        <div class="form-group position-relative">
+                            <i class="fas fa-envelope message-icon position-absolute"
+                                style="left: 10px; top: 50%; transform: translateY(-50%);"></i>
+                            <textarea class="form-control pl-5" name="message" rows="5" placeholder="Votre Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-light btn-block mt-3">Envoyer un message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <!--footer-->
+    <footer class="footer">
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+        <p>2023 &copy; Fait par Lahmer Rania Nafissa et Messaoudene Abderrahmane</p>
+    </footer>
+</body>
+</html>

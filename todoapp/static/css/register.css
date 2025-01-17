@@ -1,0 +1,45 @@
+#message {
+    color: #b22222;
+}
+nav{
+    background-color: #F0F8FF;
+    display: flex;
+    height:60px;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    border-radius: 50%;
+    width:60px;
+    height: 50px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 7px 9px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: blue;
+    text-decoration: none;
+    font-size: 18px;
+    justify-content: space-between;
+    font-style: italic;
+    font-weight: bold;
+}
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+    width: 100%;
+}

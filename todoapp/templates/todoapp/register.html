@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskify - Inscription</title>
+    {% load static %}
+    <link rel="stylesheet" href="../../static/register.css">
+    <meta name="keywords" content="Taskify, ToDo List, Tasks, Organize">
+    <meta name="author" content="MESSAOUDENE Abderrahmane, LAHMER Rania Nafissa">
+    <link rel="icon" type="image/x-icon" href="../../static/images/logo.png">
+  </head>
+<body>
+  <div class="wrapper">
+    <h2>Inscription</h2><br>
+    {% if messages %}
+      {% for message in messages %}
+        <h2 id="message">{{message}}</h2>
+      {% endfor %}
+    {% endif %}
+    <form action="#" method="POST">
+      {% csrf_token %}
+      <div class="input-box">
+       <label><strong>Nom d'utilisateur:</strong><br> <input type="text" pattern="[A-Za-z]+"placeholder="Entrez votre nom d'utilisateur" required name="username"></label>
+      </div>
+      <div class="input-box">
+        <label><strong>E-mail:</strong><br> <input type="email" placeholder="Entrez votre e-mail" required name="email"></label>
+      </div>
+      <div class="input-box">
+        <label><strong>Mot de passe:</strong><br> <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Entrer votre mot de passe" required name="password"></label>
+      </div>
+      <div class="input-box">
+        <label><strong>Date de naissance:</strong><br>  <input type="date" name="date_of_birth" id="dueDate" placeholder="Entrez votre date de naissance" required></label>
+        <script>
+                    // Get the current date and time in the local timezone
+                      const now = new Date();
+                      const maxyear = now.getFullYear()-12;
+                      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                      const day = now.getDate().toString().padStart(2, '0');
+
+                      // Set the minimum value of the input to the current date
+                      const maxDate = `${maxyear}-${month}-${day}`;
+                      document.getElementById("dueDate").max = maxDate;
+
+                      // Set the value of the input to the current date
+                      document.getElementById("dueDate").value = maxDate;
+
+                      // Function to handle change event on the input
+                      document.getElementById("dueDate").addEventListener("input", function (event) {
+                        const selectedDateTime = new Date(event.target.value);
+                        if (selectedDateTime < now) {
+                          event.target.value = currentDate; // Reset to current date and time if a past date is selected
+                        }
+                      });
+                  </script>
+      </div>
+      <div class="policy">
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="S'inscrire">
+      </div>
+      <div class="text">
+        <h3>Tu as deja un compte? <a href="{%url 'login'%}"> Se connecter</a></h3>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+body{
+  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f0f8ff;
+}
+.mb-4 {
+  max-width: 600px; /* Largeur maximale du conteneur */
+  margin: 20px auto; /* Centrer le conteneur */
+  border: 2px solid blue; /* Bordure bleue autour du conteneur */
+  padding: 20px; /* Espacement à l'intérieur du conteneur */
+  box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.5); /* Effet ombre bleue */
+  background-color: #F0F8FF;
+}
+
+.form-control{
+  padding: 5px; /* Ajuster le padding selon vos préférences */
+  border: 2px solid blue; /* Bordure bleue */
+  border-radius: 2px; /* Coins arrondis */
+  background-color: white; /* Couleur de fond */
+}
+
+h1 {
+  font-size: 3em; /* Taille de la police */
+  margin: 0; /* Supprime les marges par défaut */
+  color: black; /* Couleur du texte en bleu */
+  text-transform: uppercase; /* Mettre le texte en majuscules */
+  animation: none; /* Arrêter l'animation */
+}
+#taskType{
+  padding: 5px; /* Ajuster le padding selon vos préférences */
+  border: 2px solid blue; /* Bordure bleue */
+  border-radius: 2px; /* Coins arrondis */
+  background-color: white; /* Couleur de fond */
+  color: black; /* Couleur du texte */
+}
+#taskType:focus {
+  outline: none;
+  border-color: darkblue; /* Couleur de la bordure en focus */
+}
+#taskPriority{
+  padding: 5px; /* Ajuster le padding selon vos préférences */
+  border: 2px solid blue; /* Bordure bleue */
+  border-radius: 2px; /* Coins arrondis */
+  background-color: white; /* Couleur de fond */
+  color: black; /* Couleur du texte */
+}
+
+#taskPriority:focus {
+  outline: none;
+  border-color: darkblue; /* Couleur de la bordure en focus */
+}
+nav{
+  background-color: #F0F8FF;
+  display: flex;
+  height:60px;
+  justify-content: space-between;
+  align-items: center;
+}
+nav img{
+  border-radius: 50%;
+  width:60px;
+  height: 50px;
+}
+.nav-links{
+  flex: 1;
+  text-align: right;
+}
+.nav-links ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 7px 9px;
+  position: relative;
+}
+.nav-links ul li a{
+  color: blue;
+  text-decoration: none;
+  font-size: 18px;
+  justify-content: space-between;
+  font-style: italic;
+  font-weight: bold;
+}
+.nav-links ul li::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: blue;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+  width: 100%;
+}
+.stats-section {
+  position: relative;
+  background-color: white;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 3px solid blue;
+  /* Bordure bleue */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Style pour le titre h1 */
+.stats-section h1 {
+  text-align: center;
+  color: black;
+  margin-bottom: 30px;
+}
+
+/* Style pour les titres h2 */
+.stats-section h2 {
+  position: relative;
+  margin-top: 40px;
+  color: blue;
+  text-align: center;
+  font-size: 32px;
+  padding-bottom: 20px;
+}
+
+/* Style pour les titres h2::before (éléments décoratifs) */
+.stats-section h2::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: blue;
+}
+
+/* Style pour les listes */
+.stats-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Style pour les éléments de liste li */
+.stats-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-top: 20px;
+  color: red;
+  font-size: 18px;
+}
+
+/* Style pour les balles personnalisées */
+.stats-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3498db;
+}
+/* Header styling */
+.title-box {
+  background-color: #3498db;
+  padding: 20px 0;
+  color: white;
+}
+
+.title-box h1 {
+  font-size: 3em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Form styling */
+.form-group {
+  text-align: left;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.form-control {
+  padding: 10px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+.form-select {
+  padding: 10px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Table styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #3498db;
+  color: white;
+}
+
+.table-danger,
+.table-warning,
+.table-info {
+  border: 2px solid #3498db;
+  border-radius: 5px;
+}
+
+.table-danger td,
+.table-warning td,
+.table-info td {
+  border-top: 1px solid #3498db;
+}
+
+/* Stats section styling */
+.stats-section {
+  background-color: white;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 3px solid #3498db;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.stats-section h1 {
+  color: #3498db;
+  margin-bottom: 30px;
+}
+
+.stats-section h2 {
+  color: #3498db;
+  margin-top: 40px;
+  font-size: 28px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.stats-section h2::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: #3498db;
+}
+
+.stats-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.stats-list li {
+  margin-top: 20px;
+  font-size: 18px;
+  position: relative;
+  color: #333;
+}
+
+.stats-list li::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3498db;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Button styles */
+.btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: 2px solid #e74c3c;
+  color: white;
+}
+#delete-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      border: 1px solid #ddd;
+    }
+
+    #delete-table th {
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #delete-table td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }

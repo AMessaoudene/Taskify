@@ -1,0 +1,621 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Taskify, ToDo List, Tasks, Organize">
+    <meta name="author" content="MESSAOUDENE Abderrahmane, LAHMER Rania Nafissa">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Taskify</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins',sans-serif;
+        }
+        body{
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-color:#dbeafe;
+        }
+        .header{
+            justify-content: space-between;
+            min-height: 100vh;
+            width: 100%;
+            background-image: url('../static/images/clock.png');
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            z-index:999;
+            position:sticky;
+            top:0;
+            left:0;
+        }
+        nav{
+            background-color: #F0F8FF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        nav img{
+            border-radius: 50%;
+            width:60px;
+            height: 50px;
+        }
+        .auth-links {
+    display: inline-block; /* Ensure the auth links are on the same line */
+    margin-left: 15px; /* Add some space between these links and others */
+}
+
+.auth-links li {
+    display: inline-block; /* Display these links horizontally */
+    margin-left: 15px; /* Add spacing between individual links */
+}
+        .nav-links{
+            flex: 1;
+            text-align: right;
+        }
+        .nav-links ul li {
+    display: inline-block;
+    padding: 7px 12px;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color: blue;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: width 0.5s ease; /* Smooth transition for underline */
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+        .text-box{
+            width: 90%;
+            color: black;
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }
+        .text-box h1{
+            font-size: 72px;
+            background: -webkit-linear-gradient(lightblue , blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-box p{
+            margin: 10px 0 40px;
+            font-size: 20px;
+            color: black;
+        }
+        .social-media a{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid blue;
+            border-radius: 50%;
+            font-size: 20px;
+            color: blue;
+            text-decoration: none;
+            margin: 40px 15px 30px 0;
+        }
+        .hero-btn{
+            display: inline-block;
+            padding: 24px 38px;
+            background-color: blue;
+            border-radius: 40px;
+            box-shadow: 0 0 10px blue;
+            font-size: 20px;
+            color: white;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .hero-btn:hover{
+            border: 2px solid black;
+            background-color: blue;
+            transition: 2s;
+        }
+        nav .fa{
+            display: none;
+        }
+        @media(max-width:700px){
+            .text-box h1{
+                font-size:20px;
+            }
+            .nav-links ul li{
+                display: block;
+            }
+            .nav-links{
+        position: absolute;
+        background-color: black;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px; /* Typo: removed space */
+        text-align: left;
+        z-index: 2;
+        transition: right 1s; /* Modified transition property */
+    }
+            nav .fa{
+                display: block;
+                color: lightblue;
+                margin: 10px;
+                font-size: 22px;
+                cursor: pointer;
+            }
+            .nav-links ul{
+                padding: 30px;
+            }
+        }
+        /*services*/
+        .services{
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .services h1 {
+            color: blue;
+            font-size: 36px;
+            font-weight: 600;
+            padding: 6px 15px; /* Ajoute du padding pour l'espace à l'intérieur du cadre */
+            display: inline-block; /* Pour que le cadre s'adapte à la largeur du contenu */
+            border: 2px solid blue; /* Bordure blanche de 2px */
+            background-color: white; /* Fond blanc */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+        }
+        .services h1:hover{
+            color:blue;
+        }
+        .entete {
+            color: black;
+            font-size: 15px;
+            font-weight: bold; /* Pour l'écriture en gras */
+            line-height: 22px;
+            padding: 10px;
+        }
+
+        .row{
+            margin-top: 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .service {
+            flex-basis: 31%;
+            background-color: #FFFFFF;
+            margin-bottom: 5%;
+            padding: 15px 12px;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease-in-out; /* Transition de l'ombre */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre */
+            border: 1px solid blue; /* Bordure */
+        }
+          /* Animation au survol */
+        .service:hover {
+            background-color:#F0F8FF; /* Nouvelle couleur de fond au survol */
+            color: black; /* Nouvelle couleur de texte au survol */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Nouvelle ombre au survol */
+        }
+        .services h1:hover{
+            background-color:lightblue;
+        }
+        h3{
+            color: blue;
+            text-align: center;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .service:hover{
+            box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+        }
+        @media(max-width: 700px){
+            .row{
+                flex-direction: column;
+            }
+        }
+        /*about us*/
+        .cont {
+            position: relative;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .cont h1{ 
+            font-weight:bold;
+            color: blue;
+            font-size: 30px;
+            font-weight: 500;
+            padding: 7px 15px; /* Ajoute du padding pour l'espace à l'intérieur du cadre */
+            display: inline-block; /* Pour que le cadre s'adapte à la largeur du contenu */
+            border: 5px solid blue; /* Bordure blanche de 2px */
+            background-color: white; /* Fond blanc */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */}
+
+.container
+{
+width: 1200px;
+height: 100%;
+margin: auto;
+}
+.card
+{
+    width: 300px;
+    height: 450px;
+    background: #FFFFFF;
+    border: 1px solid blue;
+    border-radius: 2px;
+    margin-top: 50px;
+    margin-bottom: 5%;
+    margin-left: 200px; /* Augmentez la valeur de la marge à gauche pour déplacer la carte vers la droite */
+    position: relative;
+    float: left;
+}
+.card:hover
+{
+background-color:#F0F8FF; /* Nouvelle couleur de fond au survol */
+            color: black; /* Nouvelle couleur de texte au survol */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Nouvelle ombre au survol */
+}
+.one
+{
+width: 50%;
+height:30%;
+position: absolute;
+top: 20px;
+left: 70px;
+border-radius:50%;
+overflow: hidden;
+  border: 7px solid blue;
+}
+.card h3
+{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    bottom: 10px; /* Ajustez l'espacement par rapport au bas de l'image */
+    left: 0;
+    right: 0;
+    color: blue;
+}
+.card p{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    bottom: 90px; /* Ajustez l'espacement par rapport au bas de l'image */
+    left: 0;
+    right: 0;
+    color: #222;
+    font-weight: normal;
+    font-size: 15px;
+}
+        /*avis*/
+        .aviscl{
+            width: 80%;
+            margin: auto;
+            padding-top: 100px;
+            text-align: center;
+        }
+        .aviscl h1{
+            color: blue;
+            font-size: 36px;
+            font-weight: 600;
+            padding: 6px 15px; /* Ajoute du padding pour l'espace à l'intérieur du cadre */
+            display: inline-block; /* Pour que le cadre s'adapte à la largeur du contenu */
+            border: 2px solid blue; /* Bordure blanche de 2px */
+            background-color: white; /* Fond blanc */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */}
+        .clients{
+            flex-basis: 44%;
+            border-radius: 10px;
+            margin-bottom: 5%;
+            text-align: left;
+            background-color:#F6F6F6;
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+        }
+        .clients img{
+            height: 40px;
+            margin-left: 5px;
+            margin-right: 30px;
+            border-radius: 50%;
+        }
+        .clients p{
+            padding: 0;
+        }
+        .clients h3{
+            color: blue;
+            margin-top: 15px;
+            text-align: left;
+        }
+        .clients .fa{
+            color: blue;
+        }
+        @media(max-width:700px){
+            .clients img{
+                margin-left: 0px;
+                margin-right: 15px;
+            }
+        }
+        /*footer*/
+        .footer {
+            height: 100px;
+            background-color: #F0F8FF; /* Correction de la couleur de fond */
+            width: 100%;
+            text-align: center;
+        }
+        
+        .footer h4{
+            margin-bottom: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        .icons .fa{
+            color: blue;
+            margin: 0 13px;
+           cursor: pointer;
+             padding: 18px 0;
+        }
+        .nav--hidden{
+            transform: transaleY(-50px);
+        }
+.ktiba{
+    width:100%;
+    height:30vh;
+    color:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    font-weight:bold;
+    font-size:1rem;
+    width:800px;
+    height:100px;
+    background-color:white;
+    border:1px solid rgba(59,58,58,0.46);
+    border-radius:10px;
+    box-shadow:-10px 5px 10px blue;
+    top:0;
+    transition:top ease 1s;
+}
+.ktiba:hover{
+    top:-50px;
+}
+.ktiba::before{
+    content:'';
+    background-image:
+}
+.ktiba h2{
+  color:black;
+    font-size:50px;
+    font-weight:600;
+}
+.ktiba .auto-type{
+    color:blue;
+    font-weight:bold;
+}
+.lyom {
+    color:black;
+    text-align: center;
+    margin-top: 20px; /* Vous pouvez ajuster la marge selon vos besoins */
+  }
+  .task-box {
+    display:flex;
+    justify-content:center;
+    margin-top:180px;
+  }
+
+    </style>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="#"><img src="{% static 'images/logo.png' %}"></a>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'home-page' %}">Planifier</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pov">Avis Clients</a></li>
+                    {% if user.is_authenticated %}
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <path
+                            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                    </svg>
+                    <div class="auth-links">
+                        <li>
+                            <p>Welcome {{user.username}}!</p>
+                        </li>
+                        <li><a href="{% url 'logout'%}">Se Déconnecter</a></li>
+                    </div>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class="text-box">
+            <h1>TASKIFY</h1>
+            <p><strong>"Ton meilleur allié pour la gestion du temps."<strong></p>
+            <div class="social-media">
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24"
+                    style="fill:#0000ff;">
+                    <path d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.014467 17.065322 19.313017 13.21875 19.898438 L 13.21875 14.384766 L 15.546875 14.384766 L 15.912109 12.019531 L 13.21875 12.019531 L 13.21875 10.726562 C 13.21875 9.7435625 13.538984 8.8710938 14.458984 8.8710938 L 15.935547 8.8710938 L 15.935547 6.8066406 C 15.675547 6.7716406 15.126844 6.6953125 14.089844 6.6953125 C 11.923844 6.6953125 10.654297 7.8393125 10.654297 10.445312 L 10.654297 12.019531 L 8.4277344 12.019531 L 8.4277344 14.384766 L 10.654297 14.384766 L 10.654297 19.878906 C 6.8702905 19.240845 4 15.970237 4 12 C 4 7.5698774 7.5698774 4 12 4 z"></path>
+                    </svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48"
+                    style="fill:#0000ff;">
+                    <path d="M 32 6 C 26.568583 6 22.160643 10.388731 22.042969 15.792969 C 17.240727 15.216998 14.113589 13.421507 12.195312 11.652344 C 10.067982 9.6903754 9.3945312 7.9472656 9.3945312 7.9472656 A 1.50015 1.50015 0 0 0 6.8007812 7.5996094 C 6.8007812 7.5996094 5 10 5 13.5 C 5 15.500985 5.6317952 16.981554 6.3847656 18.236328 C 6.3570276 18.223338 6.1699219 18.158203 6.1699219 18.158203 A 1.50015 1.50015 0 0 0 4.0058594 19.636719 C 4.0058594 19.636719 4.5832039 23.856843 8.5507812 26.941406 L 8.1367188 27.044922 A 1.50015 1.50015 0 0 0 7.1972656 29.244141 C 7.1972656 29.244141 7.8700527 30.382221 9.2792969 31.580078 C 10.11485 32.290298 11.34227 33.023169 12.789062 33.701172 C 11.012271 34.35044 8.362818 35 4.5 35 A 1.50015 1.50015 0 0 0 3.3710938 37.488281 C 3.3710938 37.488281 4.5173251 38.751002 6.7832031 39.849609 C 9.0490812 40.948217 12.539474 42 17.5 42 C 26.219697 42 32.484656 37.817151 36.394531 32.515625 C 40.304407 27.214099 42 20.861111 42 16 C 42 15.691547 41.980739 15.387437 41.953125 15.085938 C 44.064371 13.051602 44.856626 11.522235 44.894531 11.447266 C 45.084531 11.066266 45.01375 10.608688 44.71875 10.304688 C 44.42475 9.9996875 43.969031 9.9137969 43.582031 10.091797 L 43.419922 10.166016 C 43.280922 10.230016 43.141953 10.294422 43.001953 10.357422 C 43.408953 9.7084219 43.730125 9.014875 43.953125 8.296875 C 44.077125 7.900875 43.943234 7.4669375 43.615234 7.2109375 C 43.287234 6.9549375 42.835469 6.9275312 42.480469 7.1445312 C 41.258221 7.8873594 40.086652 8.40739 38.867188 8.7558594 C 37.072578 7.0534724 34.656873 6 32 6 z M 32 9 C 35.883178 9 39 12.116822 39 16 C 39 20.138889 37.445593 26.035901 33.980469 30.734375 C 30.515344 35.432849 25.280303 39 17.5 39 C 13.7348 39 11.230189 38.318942 9.3535156 37.582031 C 11.319341 37.276755 13.011947 36.869367 14.228516 36.398438 C 16.338182 35.581792 17.476563 34.638672 17.476562 34.638672 A 1.50015 1.50015 0 0 0 16.863281 32.044922 C 14.140556 31.364241 12.394328 30.263307 11.298828 29.345703 L 12.863281 28.955078 A 1.50015 1.50015 0 0 0 13.039062 26.099609 C 9.7939415 24.851486 8.4312292 23.086373 7.734375 21.607422 C 8.5823538 21.782967 9.3718961 22 10.5 22 A 1.50015 1.50015 0 0 0 11.169922 19.158203 C 11.169922 19.158203 8 17.7 8 13.5 C 8 12.745947 8.2088435 12.268355 8.3613281 11.697266 C 8.884507 12.400354 9.3156815 13.07859 10.160156 13.857422 C 12.734824 16.231954 16.990366 18.653154 23.419922 18.998047 A 1.50015 1.50015 0 0 0 25 17.5 L 25 16 C 25 12.116822 28.116822 9 32 9 z"></path>
+                    </svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48"
+                    style="fill:#0000ff;">
+                    <path d="M 16.5 5 C 10.16639 5 5 10.16639 5 16.5 L 5 31.5 C 5 37.832757 10.166209 43 16.5 43 L 31.5 43 C 37.832938 43 43 37.832938 43 31.5 L 43 16.5 C 43 10.166209 37.832757 5 31.5 5 L 16.5 5 z M 16.5 8 L 31.5 8 C 36.211243 8 40 11.787791 40 16.5 L 40 31.5 C 40 36.211062 36.211062 40 31.5 40 L 16.5 40 C 11.787791 40 8 36.211243 8 31.5 L 8 16.5 C 8 11.78761 11.78761 8 16.5 8 z M 34 12 C 32.895 12 32 12.895 32 14 C 32 15.105 32.895 16 34 16 C 35.105 16 36 15.105 36 14 C 36 12.895 35.105 12 34 12 z M 24 14 C 18.495178 14 14 18.495178 14 24 C 14 29.504822 18.495178 34 24 34 C 29.504822 34 34 29.504822 34 24 C 34 18.495178 29.504822 14 24 14 z M 24 17 C 27.883178 17 31 20.116822 31 24 C 31 27.883178 27.883178 31 24 31 C 20.116822 31 17 27.883178 17 24 C 17 20.116822 20.116822 17 24 17 z"></path>
+                    </svg></i></a>
+            </div>
+            <a href="{% url 'home-page' %}" class="hero-btn">Commençons à planifier</a>
+        </div>
+    </section>
+    <div class="task-box">
+    <section> 
+        <div class="ktiba">
+           <h2>Vos taches pour <span class="auto-type"></span></h2>
+        </div>
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script>
+            var typed=new Typed(".auto-type",{
+                strings:["Aujourd'hui","Today","LYOUM"],
+                typeSpeed:150,
+                backSpeed:150,
+                loop:true
+            })
+        </script>
+                {% if tasks_today %}
+        <h2 class="lyom">En avant !Vos tâches du jour, <br>poursuivez votre chemin vers le succès</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tâche</th>
+                        <th scope="col">Date & Heure</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">État</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks_today %}
+                    <tr>
+                        <td>{{ task.todo_name }}</td>
+                        <td>{{ task.due_date|date:"Y-m-d H:i" }}</td>
+                        <td>{{ task.get_task_type_display }}</td>
+                        <td>
+                            {% if task.status %}
+                            <span class="badge bg-success">Complété</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">En cours</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="{% url 'mark_as_done' task.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success btn-sm">Marquer comme terminé</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h2 style="text-align: center; margin-top: 20px;">Vous n'avez pas de taches pour aujourd'hui</h2>
+        {% endif %}
+    </section>
+</div>
+    <!--2eme partie-->
+    <section class="services" id="services">
+        <h1>Services</h1>
+        <p class="entete">Notre application TASKIFY est conçue pour simplifier votre gestion quotidienne des activités. Elle offre une gamme de fonctionnalités pour vous aider à organiser, planifier et suivre vos tâches de manière efficace, vous permettant ainsi de rester productif et concentré sur vos objectifs.</p>
+        <div class="row">
+            <div class="service">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                <h3>Mode de Vue Personnalisé</h3>
+                <p>Simplifiez la gestion de vos activités selon votre préférence. Essayez-la dès maintenant pour une expérience optimisée sur notre site web !</p>
+            </div>
+            <div class="service">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+                <h3>Vue Rapide des Tâches à Faire</h3>
+                <p> En un seul clic, accédez à une liste claire et concise de vos tâches les plus importantes du jour. Vous pouvez ainsi rester concentré sur vos objectifs sans être submergé par une longue liste de choses à faire. </p>
+
+            </div>
+            <div class="service">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"/></svg>
+                <h3>Organisation par Catégories de Tâches</h3>
+                <p>En vous offrant une vue organisée par catégories, cette option vous aide à rester concentré sur des domaines spécifiques de votre vie ou de votre travail. Simplifiez votre gestion quotidienne et optimisez votre productivité en explorant cette fonctionnalité sur notre site web.</p>
+
+            </div>
+        </div>
+    </section>
+    <!--about us-->
+    <section class="cont">
+        <h1><strong>A propos de notre Team</strong></h1>
+        <div class="container">
+            <div class="card">
+
+            <img class="one" src="{% static 'images/naf.jpg' %}">
+            <p style="text-align: justify;line-height: 1.5;">Développeuse web spécialisée dans la création d'applications pratiques et intuitives. Mon expertise consiste à concevoir des expériences utilisateur fluides et à intégrer des fonctionnalités avancées pour simplifier la gestion des tâches. </p>
+            <h3>Nafissa Lahmer</h3>
+            </div>
+
+
+            <div class="card">
+            <img class="one" src="{% static 'images/abdou.jpg' %}">
+            <p style="text-align: justify;line-height: 1.5;">Fort d'une expertise en gestion et en leadership, je suis un manager déterminé à cultiver des environnements propices à l'innovation, à favoriser le développement des équipes et à atteindre des résultats exceptionnels.</p>
+            <h3>Abderrahmane Messaoudene</h3>
+
+            </div>
+
+        </div>
+    </section>
+    <!--avis clients-->
+    <section class="aviscl" id="pov">
+        <h1>Ce que disent nos clients..</h1>
+        <div class="row">
+            <div class="clients">
+                <img src="{% static 'images/photo1.jpg' %} ">
+                <div>
+                <p class="entete">Je recommande TASKIFY à tous ceux qui cherchent à optimiser leur gestion du temps. C'est une application simple, mais incroyablement efficace pour rester organisé au quotidien.</p>
+                <h3>Celia</h3>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                </div>
+            </div>
+            <div class="clients">
+                <img src="{% static 'images/handsome-young-college-boy-holding-260nw-150378902.webp' %} ">
+                <div>
+                <p class="entete">TASKIFY a transformé ma manière de gérer mon emploi du temps. Les listes de tâches personnalisables et la facilité d'utilisation en font un outil incontournable pour rester productif.</p>
+                <h3>Ahmed</h3>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                </div>
+            </div>
+    </section>
+       <!--footer-->
+       <section class="footer">
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+        <p>2023 &copy; Fait par Lahmer Rania Nafissa et Messaoudene Abderrahmane</p>
+       </section>
+</body>
+</html>
