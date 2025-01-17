@@ -10,6 +10,7 @@ from django.http import HttpResponse,FileResponse,JsonResponse
 from datetime import date, datetime
 from django.urls import reverse
 
+@login_required
 def index(request):
     # Get the current user
     current_user = request.user
